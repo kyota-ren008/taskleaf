@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  validates :name, presence: true, length: { maximum: 30 }
+  validates :name, presence: true#, length: { maximum: 30 }
   validate :validate_name_not_including_comma
 
   belongs_to :user
@@ -10,5 +10,13 @@ class Task < ApplicationRecord
 
   def validate_name_not_including_comma
     errors.add(:name, 'にカンマを含めるとはできません') if name&.include?(',')
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name created_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
   end
 end
