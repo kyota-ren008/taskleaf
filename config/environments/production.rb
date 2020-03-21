@@ -63,6 +63,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "taskleaf_#{Rails.env}"
   #メーラーの設定ここ
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
 
   config.action_mailer.perform_caching = false
 
